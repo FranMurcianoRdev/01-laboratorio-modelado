@@ -2,7 +2,6 @@
 
 ## Caso básico
 
-Este es el caso básico
 
 ![imagen](../content/modelo-basico.png)
 
