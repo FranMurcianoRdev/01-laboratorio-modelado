@@ -57,22 +57,22 @@ const users: User[] = [
   {
     name: "Luke Patterson",
     age: 32,
-    occupation: "Internal auditor", // Student
+    occupation: "Internal auditor", 
   },
   {
     name: "Jane Doe",
     age: 41,
-    subject: "English", // Teacher
+    subject: "English", 
   },
   {
     name: "Alexandra Morton",
     age: 35,
-    occupation: "Conservation worker", // Student
+    occupation: "Conservation worker", 
   },
   {
     name: "Bruce Willis",
     age: 39,
-    subject: "Biology", // Teacher
+    subject: "Biology", 
   },
 ];
 
