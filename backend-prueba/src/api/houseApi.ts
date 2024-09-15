@@ -59,4 +59,3 @@ houseApi
   });
 
 export default houseApi;
-
