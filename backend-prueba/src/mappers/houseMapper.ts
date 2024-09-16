@@ -1,4 +1,5 @@
-import { House } from "../model/houseModel";
+import { House } from "../models/houseModel";
+import { Review } from "../models/reviewModel";
 
 interface HouseDetail {
   name: string;
@@ -8,13 +9,13 @@ interface HouseDetail {
   bedrooms: number;
   beds: number;
   bathrooms: number;
-  reviews: ReviewDetail[]; // Las últimas 5 reseñas
+  reviews: ReviewDetail[];
 }
 
 interface ReviewDetail {
   name: string;
   comment: string;
-  date: Date;
+  date: string; // Usamos string para representar la fecha en formato ISO
 }
 
 export const houseToHouseApiDetail = (house: House): HouseDetail => {
@@ -26,10 +27,12 @@ export const houseToHouseApiDetail = (house: House): HouseDetail => {
     bedrooms: house.bedrooms,
     beds: house.beds,
     bathrooms: house.bathrooms,
-    reviews: house.reviews.slice(0, 5).map(review => ({
-      name: review.name,
-      comment: review.comment,
-      date: review.date,
+    reviews: house.reviews.slice(0, 5).map((review: Review) => ({
+      name: review.reviewer_name,  
+      comment: review.comments,    
+      date: typeof review.date === 'object' && '$date' in review.date
+        ? review.date.$date
+        : new Date(review.date).toISOString(), // Convierte la fecha a ISO string
     })),
   };
 };

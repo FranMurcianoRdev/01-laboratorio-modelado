@@ -1,3 +1,5 @@
+import { Review } from "./reviewModel";
+
 export interface House {
   _id: string;
   listing_url: string;
@@ -76,9 +78,3 @@ export interface House {
   reviews: Review[]; 
 }
 
-export interface Review {
-  _id: string; // ID único para cada reseña
-  name: string; // Nombre del autor de la reseña
-  comment: string; // Comentario de la reseña
-  date: Date; // Fecha en que se creó la reseña
-}

@@ -1,13 +1,15 @@
+
 {
   "compilerOptions": {
-    "target": "ES2020",                 // Especifica el objetivo del código compilado
-    "module": "commonjs",               // Especifica el sistema de módulos
-    "strict": true,                     // Activa todas las comprobaciones estrictas
-    "esModuleInterop": true,            // Habilita la interoperabilidad de ES modules
-    "skipLibCheck": true,               // Omite la comprobación de tipos en archivos de declaración de bibliotecas
-    "forceConsistentCasingInFileNames": true, // Asegura el uso consistente de mayúsculas y minúsculas en nombres de archivos
-    "outDir": "./dist"                  // Directorio de salida para los archivos compilados
+    "target": "es6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist" 
   },
-  "include": ["src/**/*.ts"],            // Archivos TypeScript a incluir
-  "exclude": ["node_modules"]            // Archivos y carpetas a excluir
+  "include": ["src/**/*.ts", "tests/**/*.ts"],
+  "exclude": ["node_modules"]  
 }

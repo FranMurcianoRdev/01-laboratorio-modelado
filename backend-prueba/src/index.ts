@@ -1,7 +1,6 @@
 import express from "express";
 import { connectDB } from "./config/db";  
-import  houseApi  from "./api/houseApi";
-import houseApiBueno from "./api/houseApiBueno";
+import houseApi from "./api/houseApi";
 
 const app = express();
 const port = 3000;
@@ -12,7 +11,7 @@ app.get("/", (req, res) => {
   res.send("My awesome house portal");
 });
 
-app.use("/api/houses", houseApiBueno);
+app.use("/api/houses", houseApi);
 
 // Conectar a la base de datos MongoDB y luego iniciar el servidor
 const startServer = async () => {

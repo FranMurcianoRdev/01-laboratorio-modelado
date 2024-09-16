@@ -1,4 +1,4 @@
-import { House } from "../model/houseModel";
+import { House } from "../models/houseModel";
 
 interface HouseList {
   name: string;
