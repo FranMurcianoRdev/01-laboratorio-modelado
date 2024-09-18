@@ -1,4 +1,4 @@
-import { isValidReview } from '../src/helpers/validationHelper';
+import { isValidReview } from '../helpers/validationHelper';
 
 describe('Validation Helpers', () => {
   test('should return true for a valid review', () => {

@@ -1,4 +1,4 @@
-import { createCountryFilter } from '../src/helpers/countryFilterHelper';
+import { createCountryFilter } from '../helpers/countryFilterHelper';
 
 describe('Country Filter Helper', () => {
   test('should handle an empty string as no country', () => {
