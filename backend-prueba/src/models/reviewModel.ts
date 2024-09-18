@@ -1,10 +1,10 @@
 export interface Review {
   _id: string;
   date: {
-    $date: string; // MongoDB almacena las fechas dentro de un objeto $date
+    $date: string; 
   };
   listing_id: string;
   reviewer_id: string;
-  reviewer_name: string; // Nombre del revisor
-  comments: string;      // Comentarios de la reseña
+  reviewer_name: string; 
+  comments: string;      
 }

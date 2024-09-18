@@ -24,7 +24,7 @@ const startServer = async () => {
     });
   } catch (error) {
     console.error("Error al iniciar el servidor:", error);
-    process.exit(1); // Sale si no puede conectarse a la base de datos
+    process.exit(1); //Salir si no se puede conectar a la base de datos
   }
 };
 

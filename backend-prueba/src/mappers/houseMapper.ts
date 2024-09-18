@@ -15,7 +15,7 @@ interface HouseDetail {
 interface ReviewDetail {
   name: string;
   comment: string;
-  date: string; // Usamos string para representar la fecha en formato ISO
+  date: string; 
 }
 
 export const houseToHouseApiDetail = (house: House): HouseDetail => {
@@ -32,7 +32,7 @@ export const houseToHouseApiDetail = (house: House): HouseDetail => {
       comment: review.comments,    
       date: typeof review.date === 'object' && '$date' in review.date
         ? review.date.$date
-        : new Date(review.date).toISOString(), // Convierte la fecha a ISO string
+        : new Date(review.date).toISOString(), 
     })),
   };
 };

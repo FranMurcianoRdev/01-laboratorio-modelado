@@ -2,21 +2,21 @@
 import { Router } from "express";
 import {houseToHouseApiList} from "../mappers/houseMapperPrincipal"
 import { houseToHouseApiDetail } from "../mappers/houseMapper";
-import { createCountryFilter } from "../helpers/countryFilterHelper";
 import { isValidReview } from "../helpers/validationHelper";
+import { createCountryFilter } from "../helpers/countryFilterHelper";
 
 const houseApi = Router();
 
   houseApi
-  //listado de las casas
+  //Listado de las casas
   .get("/", async (req, res) => {
-    const page = parseInt(req.query.page as string) || 1; // Página actual, por defecto 1
-    const limit = parseInt(req.query.limit as string) || 10; // Número de elementos por página, por defecto 10
-    const country = req.query.country as string; // Filtro por país, opcional
-  
+    const page = parseInt(req.query.page as string) || 1; 
+    const limit = parseInt(req.query.limit as string) || 10; // Número de elementos por página
+    const country = req.query.country as string;
+    
     try {
       const db = req.app.locals.db;
-      
+  
       // Validar que page y limit sean positivos
       if (page <= 0 || limit <= 0) {
         return res.status(400).send({ message: "La página y el límite deben ser números positivos." });
@@ -25,20 +25,16 @@ const houseApi = Router();
       // Calcular el número de documentos a saltar
       const skip = (page - 1) * limit;
   
-      // Construir el filtro de consulta
-      const query: any = {};
-      if (country) {
-        query["address.country"] = country;
-      }
+      // Usar el helper createCountryFilter para construir el filtro
+      const query = createCountryFilter(country);
   
       // Consultar las casas con paginación y filtro
       const houses = await db.collection('listingsAndReviews')
         .find(query)
-        .skip(skip) // Saltar documentos
-        .limit(limit) // Limitar el número de documentos
+        .skip(skip) 
+        .limit(limit)
         .toArray();
-  
-      // Usamos el mapper para devolver solo lo que necesitamos en la página principal
+
       const houseList = houses.map(houseToHouseApiList);
   
       res.send(houseList);
@@ -46,21 +42,19 @@ const houseApi = Router();
       res.status(500).send({ message: "Error al obtener las casas" });
     }
   })
-  //obtener el detalle de una casa
+  //Obtener el detalle de una casa
   .get("/:id", async (req, res) => {
     const { id } = req.params;
   
     try {
       const db = req.app.locals.db;
       
-      // Si el _id es un string en tu base de datos, no necesitas convertirlo a ObjectId
       const house = await db.collection('listingsAndReviews').findOne({ _id: id });
   
       if (!house) {
         return res.status(404).send({ message: "Casa no encontrada" });
       }
   
-      // Usamos el mapper para devolver el detalle de la casa
       const houseDetail = houseToHouseApiDetail(house);
   
       res.send(houseDetail);
@@ -68,13 +62,12 @@ const houseApi = Router();
       res.status(500).send({ message: "Error al obtener la casa" });
     }
   })
-  //para insertar una review en la casa
-
+  //Para insertar una review en la casa
   .post("/:id/reviews", async (req, res) => {
     const { id } = req.params;
-    const { name, comment } = req.body; // Extrae name y comment
+    const { name, comment } = req.body; 
   
-    if (!isValidReview({ name, comment })) { // Asegúrate de que isValidReview acepte los parámetros correctos
+    if (!isValidReview({ name, comment })) { 
       return res.status(400).send({ message: "La reseña debe tener un nombre y un comentario." });
     }
   
@@ -91,9 +84,9 @@ const houseApi = Router();
   
       const newReview = {
         _id: reviewId,
-        reviewer_name: name,  // Usa reviewer_name
-        comments: comment,    // Usa comments
-        date: new Date(),     // Fecha actual
+        reviewer_name: name, 
+        comments: comment,    
+        date: new Date(),     
       };
   
       // Insertar la nueva reseña en la primera posición
@@ -111,7 +104,6 @@ const houseApi = Router();
       res.status(500).send({ message: "Error al añadir la reseña", error });
     }
   });
-  
 
 
 export default houseApi;
