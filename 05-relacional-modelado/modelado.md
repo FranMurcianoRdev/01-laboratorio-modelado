@@ -2,7 +2,7 @@
 
 ## Caso básico
 
-![imagen](../content/WhatsApp%20Image%202024-10-06%20at%2020.01.50.jpeg)
+![imagen](../content/Relaciona.png)
 
 ## 1. Explicación del Modelado
 
@@ -18,7 +18,6 @@ Se identificaron las siguientes entidades principales:
 ## 2. Patrones Aplicados
 
 ### 1. Patrón Entidad-Relación (ER)
-- Este patrón permite mapear de manera clara las entidades del sistema y las relaciones entre ellas. 
 - En este modelo, el patrón ER fue clave para identificar las relaciones entre **Curso**, **Lección**, **Autor**, **Video**, y **Temática**.
 - La relación **1:N** entre **Curso** y **Autor** se maneja a través de una tabla de unión (`CursoAutor`), lo que permite flexibilidad para que múltiples autores puedan colaborar en un curso. Al igual que se ha implementado la tabla (`AutorVideo`), para facilitar la relación **1:N** en la cual un autor puede tener muchos videos. 
 - De forma similar, se implementa una relación **1:N** entre **Video** y **Temática**, ya que un video solo puede tener una temática, pero una temática puede aplicarse a varios videos.
@@ -27,6 +26,3 @@ Se identificaron las siguientes entidades principales:
 ### 2. Patrón de Normalización
 - El modelo sigue los principios de normalización (hasta la 3ª Forma Normal), minimizando la duplicación de datos. Por ejemplo, la separación entre **Autor**, **Curso**, y **Lección** asegura que no haya redundancia de información sobre autores o cursos en varias tablas.
 
-
-
-AÑADIR CursoAutor y 1:N para video y temática
